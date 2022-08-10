@@ -4,7 +4,7 @@
 <style>
 	body {font-family:georgia;}
   
-  .film{
+  .pokemon{
     border:1px solid #E77DC2;
     border-radius: 5px;
     padding: 5px;
@@ -28,20 +28,15 @@
 
 <script type="text/javascript">
 
-function bondTemplate(film) {
+function pokemonTemplate(pokemon) {
   return `
-        <div class="film">
-        <b>Film</b>: ${film.Film}<br />
-        <b>Title</b>: ${film.Title}<br />
-        <b>Year</b>: ${film.Year}<br />
-        <b>Director</b>: ${film.Director}<br />
-        <b>Producers</b>: ${film.Producers}<br />
-        <b>Writers</b>: ${film.Writers}<br />
-        <b>Composer</b>: ${film.Composer}<br />
-        <b>Bond</b>: ${film.Bond}<br />
-        <b>Budget</b>: ${film.Budget}<br />
-        <b>Box Office</b>: ${film.BoxOffice}<br />
-        <div class="pic"><img src="thumbnails/${film.Image}" /></div>
+        <div class="pokemon">
+        <b>PokemonName</b>: ${pokemon.PokemonName}<br />
+        <b>Type</b>: ${pokemon.Type}<br />
+        <b>Abilities</b>: ${pokemon.Abilities}<br />
+        <b>Weakness</b>: ${pokemon.Weakness}<br />
+        <b>Evolution</b>: ${pokemon.Evolution}<br />
+        <div class="pic"><img src="thumbnails/${pokemon.Image}" /></div>
       </div>
   `;
 } 
@@ -64,15 +59,15 @@ $(document).ready(function() {
      console.log(data);
 
      //place data.title on page
-     $("#filmtitle").html(data.title);
+     $("#pokemontitle").html(data.title);
 
      //clear previous films
-     $("#films").html("")
+     $("#pokemon").html("")
 
     //loop through data.films and place on page 
-    $.each(data.films,function(i,item){
-      let myData = bondTemplate(item);
-      $("<div></div>").html(myData).appendTo("#films");
+    $.each(data.pokemon,function(i,item){
+      let myData = pokemonTemplate(item);
+      $("<div></div>").html(myData).appendTo("#pokemon");
     });
      
     /*
@@ -95,11 +90,12 @@ alert('Error - ' + xhr.status + ': ' + xhr.statusText);
 </script>
 </head>
 	<body>
-	<h1>Bond Web Service</h1>
-		<a href="year" class="category">Bond Films By Year</a><br />
-		<a href="box" class="category">Bond Films By International Box Office Totals</a>
-		<h3 id="filmtitle">Title Will Go Here</h3>
-		<div id="films">
+	<h1> Web Service</h1>
+    <p>Creating a webpage with a list of pokemon and sorting them by two different types either by names or types. This is done by a initial jQuery with wiring to a click event on a tags with a class of category. Using JSON.stringify() to place pre-formatted text on the page and than use CSS to style the text. When the click the page will show eachs sort and when click the the page will clear the previous data. This is accomplishe by using  $("#pokemon").html(""). </p>
+		<a href="poke" class="category">Pokemon By Name</a><br />
+		<a href="type" class="category">Pokemon by Type</a>
+		<h3 id="pokemontitle">Title Will Go Here</h3>
+		<div id="pokemon">
       <!--
       <div class="film">
         <b>Film</b>: 1<br />
